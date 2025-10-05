@@ -1,0 +1,21 @@
+{
+  "source": "NASA POWER datos.json",
+  "num_años": 26,
+  "averages": {
+    "temperature_avg": 9.68,
+    "wind_avg": 3.74,
+    "humidity_avg": 80.44
+  },
+  "conditions": {
+    "very_hot": false,
+    "very_cold": true,
+    "very_windy": false,
+    "very_wet": true,
+    "thresholds": {
+      "VERY_HOT": 35.0,
+      "VERY_COLD": 10.0,
+      "VERY_WINDY": 10.0,
+      "VERY_WET": 20.0
+    }
+  }
+}
