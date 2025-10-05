@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "tlaloc",
+      "description": "Playful illustration of Tlaloc, the Aztec god of rain, holding a weather map.",
+      "imageUrl": "https://images.unsplash.com/photo-1746553654894-a6b39e7651c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXp0ZWMlMjBnb2R8ZW58MHx8fHwxNzU5NjEzNzE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aztec god"
+    },
+    {
+      "id": "map-background",
+      "description": "A stylized, abstract map of the world.",
+      "imageUrl": "https://images.unsplash.com/photo-1706823871410-ed8b01faef7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NTk1MzYwODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "world map"
+    },
+    {
+      "id": "stormy-background",
+      "description": "A dark, atmospheric image of stormy clouds, perfect for a weather app background.",
+      "imageUrl": "https://images.unsplash.com/photo-1594164862366-41c33f72153f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdG9ybXklMjBza3l8ZW58MHx8fHwxNzU5NjE0MjU3fDA&ixlib=rb-4.1.0&q=80&w=1920",
+      "imageHint": "stormy sky"
+    }
+  ]
+}
