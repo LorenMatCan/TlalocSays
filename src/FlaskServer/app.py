@@ -1,5 +1,7 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, jsonify
 import os,json,requests, math
+from datetime import datetime
+from flask_cors import CORS
 
 #Temperature variables
 VERY_HOT = 35.0
@@ -9,6 +11,8 @@ VERY_WINDY = 10.0  # m/s
 
                    
 app = Flask(__name__)
+CORS(app) 
+
 @app.route('/', methods=['GET', 'POST'])
 #Main page from server. not in use
 def inicio():
@@ -17,25 +21,52 @@ def inicio():
 
 
 @app.route('/weather',methods=['GET', 'POST'])
-def procesamiento():
+def weather():
     """
     Recieves parammeters
     """
-    content = {}
-    flag = False
-    if request.method == 'POST':
-        form = request.form
-        content = callAPI(form)
-        flag = True
-    return render_template('home.html', content = content, flag = flag)
+    data = request.get_json()
+    lat = data.get('latitude')
+    lng = data.get('longitude')
+    date_str = data.get('date')
 
-def callAPI(form):
+    # Validate correct values
+    try:
+        lat = float(lat)
+        if not -90 <= lat <= 90:
+            return jsonify({"error": "Invalid latitude"}), 400
+        lng = float(lng)
+        if not -180 <= lng <= 180:
+            return jsonify({"error": "Invalid longitude"}), 400
+        # Validate date format MM/dd/yyyy
+        datetime.strptime(date_str, "%m/%d/%Y")
+    except (ValueError, TypeError):
+        return jsonify({"error": "Invalid data types or format"}), 400
+
+    # Print the data
+    print(callAPI(lat, lng, date_str))
+
+    # Return dummy response for now
+    return jsonify({
+        "report": "Data received and printed in terminal",
+        "analysis": "Validation successful",
+        "metrics": {
+            "precipitation": 0,
+            "wind": 0,
+            "cloud": 0,
+            "humidity": 0,
+            "skyClearness": 0,
+            "frostDay": 0
+        }
+    })
+
+def callAPI(latitude, longitude, date):
     """Calls NASA Power API
     """
-    longitude = float(request.form['long'])
-    latitude= float(request.form['lat'])
-    date = request.form['date']
-    date = date.replace("-", "") 
+    date = datetime.strptime(date,"%m/%d/%Y")
+    new_date = date.strftime("%Y/%m/%d")
+    
+    date = new_date.replace("/", "")
     base_url = r"https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,T2MDEW,PRECTOTCORR,WS2M,CLOUD_AMT,QV2M,ALLSKY_KT,FROST_DAYS&community=RE&longitude={longitude}&latitude={latitude}&start=20150101&end={date}&format=JSON"
     output = r""
     api_request_url = base_url.format(longitude=longitude, latitude=latitude, date = date)
@@ -55,8 +86,7 @@ def cleanJASON(data, date):
     
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(data, f, separators=(',', ':'))
-        calculateWeather()
-    return 0 
+    return calculateWeather()
 
 def calculateWeather():
     """""
@@ -116,8 +146,7 @@ def calculateWeather():
                 }
             },
         }
-    with open('promedios_nasa_output.json', 'w', encoding='utf-8') as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
+    return results
 
 
 def calculate_rh(temp_c, dewpoint_c):
@@ -134,16 +163,6 @@ def calculate_rh(temp_c, dewpoint_c):
 
 with open('datos.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
-
-
-
-
-
-
-
-
-
-    
 
 
 
