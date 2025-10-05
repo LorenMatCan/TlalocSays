@@ -43,22 +43,14 @@ def weather():
     except (ValueError, TypeError):
         return jsonify({"error": "Invalid data types or format"}), 400
 
-    # Print the data
-    print(callAPI(lat, lng, date_str))
+    # Get the data
+    result = callAPI(lat, lng, date_str)
 
-    # Return dummy response for now
-    return jsonify({
-        "report": "Data received and printed in terminal",
-        "analysis": "Validation successful",
-        "metrics": {
-            "precipitation": 0,
-            "wind": 0,
-            "cloud": 0,
-            "humidity": 0,
-            "skyClearness": 0,
-            "frostDay": 0
-        }
-    })
+    # Print the data
+    print(result)
+
+    # Return the actual data
+    return jsonify(result)
 
 def callAPI(latitude, longitude, date):
     """Calls NASA Power API
@@ -67,7 +59,7 @@ def callAPI(latitude, longitude, date):
     new_date = date.strftime("%Y/%m/%d")
     
     date = new_date.replace("/", "")
-    base_url = r"https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,T2MDEW,PRECTOTCORR,WS2M,CLOUD_AMT,QV2M,ALLSKY_KT,FROST_DAYS&community=RE&longitude={longitude}&latitude={latitude}&start=20150101&end={date}&format=JSON"
+    base_url = r"https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,T2MDEW,PRECTOTCORR,WS2M,CLOUD_AMT,QV2M,ALLSKY_KT,FROST_DAYS&community=RE&longitude={longitude}&latitude={latitude}&start=20000101&end={date}&format=JSON"
     output = r""
     api_request_url = base_url.format(longitude=longitude, latitude=latitude, date = date)
     response = requests.get(url=api_request_url, verify=True, timeout=30.00)
@@ -90,9 +82,11 @@ def cleanJASON(data, date):
 
 def calculateWeather():
     """""
-    Calculates the average of diferent weather conditions in an attempt to predict future weather 
+    Calculates the average of diferent weather conditions in an attempt to predict future weather
     """
-    params = data['properties']['parameter']
+    with open('datos.json', 'r', encoding='utf-8') as f:
+        data_loaded = json.load(f)
+    params = data_loaded['properties']['parameter']
     
     temps = []
     winds = []
@@ -122,7 +116,7 @@ def calculateWeather():
     # If it's in range we determinate the weather condition
     very_hot = avg_temp > VERY_HOT
     very_cold = avg_temp < VERY_COLD
-    very_windy = avg_temp > VERY_WINDY
+    very_windy = avg_wind > VERY_WINDY
     very_wet = avg_hum > VERY_WET
     
     results = {
