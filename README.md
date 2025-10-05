@@ -33,6 +33,12 @@ Our app consist of a webPage and a server.
 Once you create and activate your cirtual enviroment you'll need to install the dependecies needed.
 We included a requirements.txt file so that all you need to do is use the following command:
 
+    - pip install requirements.txt 
+
+Once that's done to start the server use the following command:
+
+    - python app.py
+
 ##### Starting the webpage
 You can start our react webpage with the following terminal commands
 
