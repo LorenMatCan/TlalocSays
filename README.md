@@ -1,4 +1,4 @@
-# 2025 NASA Space Apps Challenge - Orrery Web App.
+# 2025 NASA Space Apps Challenge .
 
 ## Project: Will it rain on my parade?
 
