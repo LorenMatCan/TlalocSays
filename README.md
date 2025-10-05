@@ -18,8 +18,8 @@ Welcome to our submission for the 2025 NASA Space Apps Challenge!
 There are two constant in life; the weather and people making plans. The weather can either be beneficial or detrimental to our beloved plans, witth this we aim to help aliviate the uncertanty of what the wetather will. With predictions farther in the future than even normal weather forecast, all thanks to the power of NASA databases. 
 #### Features
 
-	- Easy to comprehend weathe probailities.
-    - Light and to the point weather predictions based on historic data.
+- Easy to comprehend weathe probailities.
+- Light and to the point weather predictions based on historic data.
     
 
 #### How to Compile and Run
@@ -34,9 +34,9 @@ We included a requirements.txt file so that all you need to do is use the follow
 ##### Starting the webpage
 You can start our react webpage with the following terminal commands
 
-- nmp i
-- npm run build
-- npm start 
+     nmp i
+     npm run build
+     npm start 
 
 Then, open the port http://127.0.0.1:8000 in your browser, where our Web App will be accessible.
 
@@ -44,18 +44,18 @@ Then, open the port http://127.0.0.1:8000 in your browser, where our Web App wil
 
 We used Flask and Flask-core for our python server.
 
-	- Flask:https://flask.palletsprojects.com/en/stable/
+- Flask:https://flask.palletsprojects.com/en/stable/
 
 For the front of our web app we used react, typeScript,Tailwind CSS. 
-     - React: https://react.dev/
-     - typeScript: https://www.typescriptlang.org/
-     - Tailwind CSS https://tailwindcss.com/
+- React: https://react.dev/
+- typeScript: https://www.typescriptlang.org/
+- Tailwind CSS https://tailwindcss.com/
 
 The Historic weather infromation was gatehred from: 
-	- https://power.larc.nasa.gov/docs/methodology/communities/
+- https://power.larc.nasa.gov/docs/methodology/communities/
 
 #### Future Work
 
-	- Hability to pick a point in a map.
-    - Clearer visualization 
-    - Personalization of preffered weather
+- Hability to pick a point in a map.
+- Clearer visualization 
+- Personalization of preffered weather
