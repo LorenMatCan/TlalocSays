@@ -27,7 +27,9 @@ Our app consist of a webPage and a server.
  ##### Starting the server
  We first need to start our python flask server for this it is recomended you create a virtual enviroment
  You can create one with the following command:
-	- python3 -m venv .venv
+ 
+    - python3 -m venv .venv
+	
 Once you create and activate your cirtual enviroment you'll need to install the dependecies needed.
 We included a requirements.txt file so that all you need to do is use the following command:
 
